@@ -44,3 +44,6 @@ webserver_config.py
 *.swo
 .DS_Store
 Thumbs.db
+# Windows Zone.Identifier metadata files
+*.Zone.Identifier
+*:Zone.Identifier

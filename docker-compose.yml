@@ -14,6 +14,8 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW_UID: ${AIRFLOW_UID:-50000}
+    AIRFLOW_CONN_MY_DB_CONN: 'postgresql://data_user:data_password@postgres-target:5432/warehouse_db'
+    AIRFLOW_CONN_MONGO_DEFAULT: 'mongodb://mongo_user:mongo_password@mongodb:27017/app_db?authSource=admin'
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
@@ -68,7 +70,30 @@ services:
       start_period: 5s
 
   # --------------------------------------------------------
-  # 3. Core Airflow Services
+  # 3. Non-Relational Database (MongoDB)
+  # --------------------------------------------------------
+  mongodb:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+      MONGO_INITDB_DATABASE: app_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-volume:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    networks:
+      - shared-my-network
+      - default
+
+  # --------------------------------------------------------
+  # 4. Core Airflow Services
   # --------------------------------------------------------
   redis:
     image: redis:latest
@@ -163,6 +188,7 @@ services:
 volumes:
   postgres-db-volume:
   postgres-target-volume:
+  mongodb-volume:
 
 networks:
   shared-my-network:
