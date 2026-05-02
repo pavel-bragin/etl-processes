@@ -1,6 +1,0 @@
-apache-airflow-providers-postgres
-apache-airflow-providers-mongo
-pandas
-sqlalchemy
-pymongo
-faker
