@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "source": "storegee-demo",
+    "generated_at": "2026-05-03T12:00:00Z"
+  },
+  "catalogs": [
+    {
+      "catalog_id": "cat-electronics",
+      "title": "Electronics",
+      "slug": "electronics",
+      "sort_order": 1,
+      "is_active": true
+    },
+    {
+      "catalog_id": "cat-books",
+      "title": "Books",
+      "slug": "books",
+      "sort_order": 2,
+      "is_active": true
+    },
+    {
+      "catalog_id": "cat-home",
+      "title": "Home",
+      "slug": "home",
+      "sort_order": 3,
+      "is_active": false
+    }
+  ],
+  "offers": [
+    {
+      "offer_id": "off-1001",
+      "catalog_id": "cat-electronics",
+      "name": "USB-C cable 2m",
+      "price": 12.5,
+      "currency": "USD",
+      "in_stock": true,
+      "tags": ["cable", "usb-c"]
+    },
+    {
+      "offer_id": "off-1002",
+      "catalog_id": "cat-electronics",
+      "name": "Mechanical keyboard",
+      "price": 129.0,
+      "currency": "USD",
+      "in_stock": false,
+      "tags": ["keyboard", "mechanical"]
+    },
+    {
+      "offer_id": "off-2001",
+      "catalog_id": "cat-books",
+      "name": "Learning Spark",
+      "price": 54.9,
+      "currency": "USD",
+      "in_stock": true,
+      "tags": ["spark", "data"]
+    },
+    {
+      "offer_id": "off-3001",
+      "catalog_id": "cat-home",
+      "name": "Desk lamp LED",
+      "price": 34.0,
+      "currency": "USD",
+      "in_stock": true,
+      "tags": ["lamp", "led"]
+    }
+  ]
+}
